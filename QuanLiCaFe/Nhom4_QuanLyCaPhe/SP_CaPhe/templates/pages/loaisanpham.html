@@ -1,0 +1,31 @@
+﻿{% extends "pages/layout.html" %}
+
+{% block title %}
+Loại Sản Phẩm
+{% endblock %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <h1 style="text-align: center; color:darkred">Loại Sản Phẩm</h1>
+    <hr />
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Ten Loai</th>
+
+        </tr>
+        {% for loai in LoaiSanPham %}
+        <tr>
+            <td>{{loai.id}}</td>
+            <td>{{loai.TenLoai}}</td>
+            <td><a href="{% url 'themloaisanpham' %}">them loai san pham</a></td>
+            <td><a href="{% url 'xoaloaisanpham' %}">Xoa loai san pham</a></td>
+            <td><a href="{% url 'sualoaisanpham' loai.id %}">Cập nhập loại sản phẩm</a></td>
+        </tr>
+
+        {% endfor %}
+    </table>
+
+</div>
+
+{% endblock %}

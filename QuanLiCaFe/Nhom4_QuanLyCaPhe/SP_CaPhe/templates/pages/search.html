@@ -1,0 +1,41 @@
+﻿{% extends "pages/layout.html" %}
+
+{% block title %}
+Search
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<br />
+<div class="col-md-12">
+    <h1 class=" w-100 p-3 text-danger" style="text-align:center">Search for {{searched}}</h1>
+</div>
+<div class="container-fluid min-vh-100">
+    <div class="row min-vh-100">
+        <div class="col-lg-12">
+            <div class="row">
+                {% if sanpham %}
+                {% for sp in sanpham %}
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="card mb-3">
+                        <img src="{% static 'img/' %}{{ sp.Anh }}" class="card-img-top" alt="{{ sp.TenSanPham }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ sp.TenSanPham }}</h5>
+                            <p class="card-text">Giá: {{ sp.Gia }}</p>
+                            <a href="{% url 'chitietsanpham' sp.id %}" class="btn btn-primary">Xem chi tiết</a>
+                            <a href="{% url 'add_to_cart' sp.id %}" class="btn btn-danger">Mua ngay</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                <div class="col-md-12">
+                    <p class="text-center mt-4">Không tìm thấy sản phẩm nào.</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

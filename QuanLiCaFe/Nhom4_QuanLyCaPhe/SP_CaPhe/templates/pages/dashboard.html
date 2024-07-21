@@ -1,0 +1,35 @@
+{% extends "pages/layout.html" %} 
+
+{% block content %}
+
+<h1>Hello : {{ request.user.username }}</h1>
+<a href="{% url 'logout' %}" class="btn btn-dark">Logout</a> 
+<br />
+
+<br />
+<table border="1" style="width: 100%; text-align: center;">
+    <tr>
+        <th>Function</th>
+        <th>Action</th>
+    </tr>
+    <tr>
+        <td>Chỉnh sửa loại sản phẩm </td>
+        <td><a href="{% url 'danhSachLoaiSanPham' %}"><button>Loại sản phẩm</button></a></td>
+    </tr>
+    <tr>
+        <td colspan="2" style="border-top: 1px solid black;">&nbsp;</td>
+    </tr>
+    <tr>
+        <td>Chỉnh sửa sản phẩm</td>
+        <td><a href="{% url 'danhSachSanPham_staff' %}"><button>Sản phẩm</button></a></td>
+    </tr>
+    <tr>
+        <td colspan="2" style="border-top: 1px solid black;">&nbsp;</td>
+    </tr>
+    <tr>
+        <td>Quản lý hóa đơn</td>
+        <td><a href="{%url 'DSHoaDon'%}">Hóa đơn</a></td>
+    </tr>
+</table>
+
+{% endblock %}

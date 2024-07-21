@@ -1,0 +1,169 @@
+﻿{% extends "pages/layout.html" %}
+
+{% block title %}
+Thêm Sản Phẩm
+{% endblock %}
+
+{% block content %}
+<style>
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f8f8f8;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+    }
+
+    select {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        appearance: none;
+        background-image: linear-gradient(45deg, transparent 50%, #ddd 50%), linear-gradient(135deg, #ddd 50%, transparent 50%);
+        background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px);
+        background-size: 5px 5px, 5px 5px;
+        background-repeat: no-repeat;
+    }
+
+    .btn {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        background-color: #dc3545;
+        color: #fff;
+        text-align: center;
+        text-transform: uppercase;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background-color: #c82333;
+    }
+</style>
+
+<div class="container">
+    <h1>Thêm sản phẩm mới</h1>
+    <form method="POST" class="needs-validation" novalidate action="/cafe/themsanpham">
+        {% csrf_token %}
+        <div>
+            <label for="tenSanPham">Tên sản phẩm</label>
+            <input type="text" name="TenSanPham" id="tenSanPham">
+            <div class="invalid-feedback">
+                Vui lòng nhập tên sản phẩm.
+            </div>
+        </div>
+        <div>
+            <label for="gia">Giá</label>
+            <input type="number" name="Gia" id="gia">
+            <div class="invalid-feedback">
+                Vui lòng nhập giá sản phẩm.
+            </div>
+        </div>
+        <div>
+            <label for="moTa">Mô tả</label>
+            <textarea name="MoTa" id="moTa"></textarea>
+            <div class="invalid-feedback">
+                Vui lòng nhập mô tả sản phẩm.
+            </div>
+        </div>
+        <div>
+            <label for="anh">Ảnh</label>
+            <input type="file" name="Anh" id="anh">
+            <div class="invalid-feedback">
+                Vui lòng nhập mô tả sản phẩm.
+            </div>
+        </div>
+        <div>
+            <label for="loaiSanPham">Loại sản phẩm</label>
+            <select name="LoaiSanPham" required>
+                <option value="" selected disabled>Chọn loại sản phẩm</option>
+                {% for loai in loaiSanPham %}
+                <option value="{{ loai.id }}">{{ loai.TenLoai }}</option>
+                {% endfor %}
+            </select>
+            <div class="invalid-feedback">
+                Vui lòng chọn loại sản phẩm.
+            </div>
+        </div>
+        <div>
+            <label>Mức độ đường</label>
+            <div>
+                <input type="radio" id="sugerLevel20" name="Suger_level" value="20%">
+                <label for="sugerLevel20">20%</label>
+            </div>
+            <div>
+                <input type="radio" id="sugerLevel30" name="Suger_level" value="30%">
+                <label for="sugerLevel30">30%</label>
+            </div>
+            <div>
+                <input type="radio" id="sugerLevel40" name="Suger_level" value="40%">
+                <label for="sugerLevel40">40%</label>
+            </div>
+            <div>
+                <input type="radio" id="sugerLevel50" name="Suger_level" value="50%">
+                <label for="sugerLevel50">50%</label>
+            </div>
+            <div>
+                <input type="radio" id="sugerLevel75" name="Suger_level" value="75%">
+                <label for="sugerLevel75">75%</label>
+            </div>
+            <div>
+                <input type="radio" id="sugerLevel100" name="Suger_level" value="100%">
+                <label for="sugerLevel100">100%</label>
+            </div>
+            <div class="invalid-feedback">
+                Vui lòng chọn mức độ đường.
+            </div>
+        </div>
+        <br>
+        <div>
+            <label>Topping</label>
+            <div>
+                <input type="checkbox" id="topping_chanchau" name="Topping_checkbox" value="chân châu">
+                <label for="topping_chanchau">Chân châu</label>
+            </div>
+            <div>
+                <input type="checkbox" id="topping_thachdao" name="Topping_checkbox" value="Thach đào">
+                <label for="topping_thachdao">Thach đào</label>
+            </div>
+            <div>
+                <input type="checkbox" id="topping_flan" name="Topping_checkbox" value="Bánh Flan">
+                <label for="topping_flan">Bánh Flan</label>
+            </div>
+            <div>
+                <input type="checkbox" id="topping_nhan" name="Topping_checkbox" value="Nhãn">
+                <label for="topping_nhan">Nhãn</label>
+            </div> 
+            <div class="invalid-feedback">
+               Vui lòng chọn Topping
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="btn">Thêm sản phẩm</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

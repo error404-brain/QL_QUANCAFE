@@ -1,0 +1,15 @@
+{% extends "pages/layout.html" %}
+{% block title %}
+Check out
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center text-danger">Thanh toan thanh cong</h1>
+    <p class="text-center text-danger">Ma HD: {{ order_id }}</p>
+    <p class="text-center text-danger">Tong Tien: {{ total_price }}</p>
+</div>
+
+{% endblock %}

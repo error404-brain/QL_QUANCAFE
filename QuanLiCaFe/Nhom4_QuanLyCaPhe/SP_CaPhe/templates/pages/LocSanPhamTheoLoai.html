@@ -1,0 +1,55 @@
+﻿{% extends "pages/layout.html" %}
+
+{% block title %}
+Sản Phẩm
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<br />
+    <div class="container-fluid min-vh-100">
+        <div class="row min-vh-100">
+            <div class="col-lg-3">
+                <div class="sidebar">
+                    <ul class="list-group">
+                        <li class="list-group-item bg-danger active">Loại sản phẩm</li>
+                        {% for loai in LoaiSanPham %}
+                            {% if loai.id == LoaiSanPhamChon %}
+                                <li class="list-group-item loai" data-id="{{ loai.id }}" style="text-decoration: none; text-transform:uppercase; font-weight:700" onmouseover="this.style.textDecoration='underline'; this.style.color='blue';" onmouseout="this.style.textDecoration='none'; this.style.color='';"><a style="text-decoration: none" href="{% url 'LocSanPhamTheoLoai' loai.id %}">{{ loai.TenLoai }}</a></li>
+                            {% else %}
+                                <li class="list-group-item loai" data-id="{{ loai.id }}" style="text-decoration: none; text-transform:uppercase;" onmouseover="this.style.textDecoration='underline'; this.style.color='blue';" onmouseout="this.style.textDecoration='none'; this.style.color='';"><a style="text-decoration: none" href="{% url 'LocSanPhamTheoLoai' loai.id %}">{{ loai.TenLoai }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="row ">
+                    <!--<div class="col-md-10">
+                        <h4 class=" w-100 p-3 text-danger" style="text-align:center">Danh sách sản phẩm</h4>
+                    </div>-->
+                    {% if sanpham %}
+                    {% for sp in sanpham %}
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="card mb-3">
+                            <img src="{% static 'img/' %}{{ sp.Anh }}" class="card-img-top" alt="{{ sp.TenSanPham }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ sp.TenSanPham }}</h5>
+                                <p class="card-text">Giá: {{ sp.Gia }}</p>
+                                <a href="{% url 'chitietsanpham' sp.id %}" class="btn btn-primary">Xem chi tiết</a>
+                                <a href="#" class="btn btn-danger">Mua ngay</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <div class="col-md-12">
+                        <p class="text-center mt-4">Không tìm thấy sản phẩm nào.</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}

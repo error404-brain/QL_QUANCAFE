@@ -1,0 +1,29 @@
+﻿<!-- product_detail.html -->
+{% extends "pages/layout.html" %}
+
+{% block title %}
+Chi Tiết Sản Phẩm
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center text-danger">Chi Tiết Sản Phẩm</h1>
+    <hr />
+    <div class="row">
+        <div class="col-lg-4">
+            <img src="{% static 'img/' %}{{ sanPham.Anh }}" class="card-img-top" alt="{{ sanPham.TenSanPham }}">
+        </div>
+        <div class="col-lg-8">
+            <h2>{{ sanPham.TenSanPham }}</h2>
+            <p>Giá: {{ sanPham.Gia }}</p>
+            <p>Mô tả: {{ sanPham.MoTa }}</p>
+            <p>Mức đương: {{sanPham.Suger_level}}</p>
+            <p>Topping: {{sanPham.Topping_checkbox}}</p>
+            <a href="{% url 'add_to_cart' sanPham.id %}" class="btn btn-danger">Mua ngay</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

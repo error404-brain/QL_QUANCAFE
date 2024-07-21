@@ -1,0 +1,38 @@
+﻿{% extends "pages/layout.html" %}
+
+{% block title %}
+Sản Phẩm
+{% endblock %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <h1 style="text-align: center; color: darkred">Sản Phẩm</h1>
+    <hr />
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Ten San Pham</th>
+            <th>Gia</th>
+            <th>Mota</th>
+            <th>Lượng đường</th>
+            <th>Topping</th>
+            <th>Ảnh</th>
+        </tr>
+        {% for sp in SanPham %}
+        <tr>
+            <td>{{ sp.id }}</td>
+            <td>{{ sp.TenSanPham }}</td>
+            <td>{{ sp.Gia }}</td>
+            <td>{{ sp.MoTa|truncatechars:50 }}</td>
+            <td>{{ sp.Suger_level }}</td>
+            <td>{{ sp.Topping_checkbox }}</td>
+            <td><img src="{% static 'img/' %}{{ sp.Anh }}" style="height:100px ;width:100px" /> </td>
+            <td><a href="{%url 'themsanpham' %}">Thêm sản phẩm</a></td>
+            <td><a href="{%url 'xoa_san_pham' %}">xóa sản phẩm</a></td>
+            <td><a href="{% url 'suasanpham' sp.id %}">Cập nhập sản phẩm</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

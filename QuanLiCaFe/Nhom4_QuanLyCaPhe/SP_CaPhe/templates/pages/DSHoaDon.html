@@ -1,0 +1,34 @@
+{% extends "pages/layout.html" %}
+{% block title %}
+Danh sách hóa đơn
+{% endblock %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <h1 style="text-align: center; color:darkred">Danh sách hóa đơn</h1>
+    <hr />
+    <table class="table table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>Ngày lập</th>
+            <th>Tổng tiền</th>
+            <th>Khách hàng</th>
+
+        </tr>
+        {% for hd in ds_hoadon %}
+        <tr>
+            <td>{{hd.id}}</td>
+            <td>{{hd.date_ordered}}</td>
+            {% load humanize %}
+            <td>{{ hd.total_price|floatformat:"0"|intcomma }}VNĐ</td>
+            <td>{{hd.user.username}}</td>
+            <td><a href="{% url 'DSChiTietHD' hd.id %}">Xem chi tiết</a></td>
+            <td><a href="{% url 'XoaHD' hd.id %}">Xóa hóa đơn</a></td>
+        </tr>
+
+        {% endfor %}
+    </table>
+
+</div>
+
+{% endblock %}
